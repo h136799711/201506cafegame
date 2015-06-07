@@ -29,6 +29,11 @@ class HomeController extends  Controller {
 			}
 		}
 		
+		$this->theme = getTheme();
+//		C('SHOW_PAGE_TRACE', false);//设置不显示trace
+		
+		$this->assign("theme",$this->theme);
+		
 		$this->assign("active",0);
 	}
 	
@@ -66,7 +71,7 @@ class HomeController extends  Controller {
 	 * @param  integer $type  配置类型
 	 * @param  string  $value 配置值
 	 */
-	private static function parse($type, $value) {
+	private function parse($type, $value) {
 		switch ($type) {
 			case 3 :
 				//解析数组

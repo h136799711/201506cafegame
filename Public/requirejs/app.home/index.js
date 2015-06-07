@@ -1,4 +1,4 @@
-define("main",function(require, exports, module){
+define(function(require, exports, module){
 	
 	console.log(exports);
 	console.log(module);

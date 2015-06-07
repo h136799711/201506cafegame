@@ -7,21 +7,25 @@
 // |-----------------------------------------------------------------------------------
 namespace Home\Controller;
 use Think\Controller;
-use Think\Storage;
+
 /*
  * 官网首页
  */
 class IndexController extends HomeController {
 	
+	protected function _initialize(){
+		parent::_initialize();
+		
+	}
 	
 	/**
 	 * 首页
 	 */
 	public function index(){
 		
-		
-		$this->theme(getTheme())->display();
+		$this->theme("mobile")->display();
 	}
+	
 	
 }
 
