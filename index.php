@@ -12,7 +12,7 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 define('BOYE_SYS_NAME',true);
 
-define("BIND_MODULE", "Home");
+//define("BIND_MODULE", "Home");
 
 // 是否调试模式
 define('APP_DEBUG',true);

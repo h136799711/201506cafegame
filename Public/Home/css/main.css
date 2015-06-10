@@ -1,0 +1,35 @@
+.cafegame{
+	
+}
+.btn {
+  
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+  user-select: none;
+  -webkit-transition: background-color 300ms ease-out,border-color 300ms ease-out;
+  transition: background-color 300ms ease-out,border-color 300ms ease-out;
+}
+.btn-coffee {
+  color: #fff;
+  background-color: #dd514c;
+  border-color: #dd514c;
+}
+.btn-coffee:focus, .btn-coffee:hover {
+  background-color: #d7342e;
+}
+.btn-coffee:visited{
+  color: #fff;
+}
+.btn-block {
+  width: 100%;
+  display: block;
+}

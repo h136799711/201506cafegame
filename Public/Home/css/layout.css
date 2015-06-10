@@ -1,0 +1,115 @@
+/**
+ * 第三方库兼容rem
+ */
+.btn{
+	padding: 0.1rem 0.1rem;
+	line-height: 1.2;
+	font-size: 0.32rem;
+}
+a{
+	text-decoration: none;
+}
+.img-responsive{
+	max-width: 640px;
+	width:100%;
+}
+/**
+ * 首页样式
+ */
+body.app{
+	max-width: 640px;
+	font-size: 0.14rem;
+	margin: 0 auto;
+}
+
+/**
+ * 顶部样式
+ */
+
+/**
+ * 首页Banner
+ */
+
+
+
+/**
+ * 底部布局
+ */
+
+.app .footer a{
+	text-decoration: none;
+	color:#EEEEEE;
+}
+.app .footer{
+	padding: 0.1rem;
+}
+.app .footer p{
+	margin: 0px;
+	line-height: 0.5rem;
+	min-height: 0.5rem;
+}
+
+.app .menu.menu_fixed_bottom{
+	position: fixed;
+	bottom: 0px;
+	left:0px;
+	width: 100%;
+	font-size: 0.16rem;
+}
+
+
+/*
+ * 回到顶部样式
+ */
+.gotop{
+	display:none;
+}
+.gotop.show{
+	display:block;
+}
+.gotop.gotop-fixed{
+	position: fixed;
+	bottom: 0.2rem;
+    right: 0.2rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: #BA9C9C;
+    text-align: center;
+    line-height: 0.8rem;
+}
+.gotop.gotop-fixed.arrived_bottom{
+	background: rgba(186, 156, 156, 0.62);
+}
+
+/**
+ * 工具
+ */
+.clearfix {
+  *zoom: 1; 
+} 
+
+.clearfix:before, 
+.clearfix:after { 
+
+  display: table; 
+
+  line-height: 0; 
+
+  content: ""; 
+
+}
+
+.clearfix:after { 
+
+  clear: both; 
+
+} 
+.text-center{
+	text-align: center;
+}
+.text-left{
+	text-align: left;
+}
+.text-right{
+	text-align: right;
+}

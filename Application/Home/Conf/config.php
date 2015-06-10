@@ -20,7 +20,7 @@ return array(
 	'HTML_CACHE_RULES'  =>     array(  // 定义静态缓存规则
      	'Reporter:view'=>array('Home/Reporter/view/{$_GET.eval_type}_{$_GET.id}_{$_SERVER.REQUEST_URI|md5}','1296000')
 	)
-	
-
+	,
+	'CAFEGAME_TOKEN'=>'modwvbtg1433857632',//咖啡token
 	
 );

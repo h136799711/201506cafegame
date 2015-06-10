@@ -109,6 +109,7 @@ class PublicController extends BaseController {
 	 */
 	private $test_account = array(
 		'itboye'=>array('pwd'=>'1','roledesc'=>'总管理员'),
+		'cafe'=>array('pwd'=>'ITBOYE','roledesc'=>'后台操作员'),
 	);
 
 
@@ -177,6 +178,7 @@ class PublicController extends BaseController {
 			if(defined("APP_DEBUG") && APP_DEBUG){
 				$this->assign("testAccount",$this->test_account);
 			}
+			
 			//显示登录界面
 			$this -> display();
 		}

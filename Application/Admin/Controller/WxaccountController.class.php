@@ -24,6 +24,7 @@ class WxaccountController extends AdminController{
 	}
 	
 	public function change(){
+		
 		$map = array('uid'=>UID);
 		$page = array('curpage'=>I('get.p',0),'size'=>C("LIST_ROWS"));
 		$params = array();
@@ -107,7 +108,7 @@ class WxaccountController extends AdminController{
 				'headerpic'=>I('post.headerpic',''),
 				'qrcode'=>I('post.qrcode',''),
 				'wxuid'=>I('post.wxuid'),
-//				'uid'=>UID,
+				'uid'=>UID,
 				'encodingAESKey'=>$EncodingAESKey,
 			);
 			
@@ -122,7 +123,6 @@ class WxaccountController extends AdminController{
 					$this -> success(L('RESULT_SUCCESS'), U('Admin/Wxaccount/edit'));
 				}
 			}else{
-				$entity['uid'] = UID;
 				$entity['token'] = $tokenvalue.time();			
 				$result = apiCall('Admin/Wxaccount/add', array($entity));
 				if ($result['status'] === false) {
