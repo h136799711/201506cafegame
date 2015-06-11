@@ -42,6 +42,16 @@
         transition: 0.25s;
         -webkit-backface-visibility: hidden;
         }
+        @media only screen and (min-width: 240px) and (max-width: 640px) {
+        		body{
+        			padding: 20px;
+        		}
+        		
+        		.system-message{
+        			border: 1px solid #EAD8D8;
+        		}
+        		
+        }
         </style>
     </head>
     <body>
