@@ -1,0 +1,64 @@
+<extend name="mobile/template/base_index" />
+
+<block name="area_header">
+	<link rel="stylesheet" type="text/css" href="__CSS__/layout.css?v=__APP_VERSION__" />
+	<link rel="stylesheet" type="text/css" href="__CSS__/main.css?v=__APP_VERSION__" />
+	<style type="text/css">
+		.list-helper{
+			background: url(__IMG__/kank.jpg) no-repeat left top;
+			background-size: cover;
+			height: 100%;
+			
+		}
+		html,body{
+			height:100%;
+		}
+	</style>
+</block>
+
+<block name="area_body">
+	
+	<div class="list-helper clearfix">
+		<ul class="clearfix">
+			<volist name="list" id="vo">
+			<li class="clearfix">
+				<div class="user-item clearfix">
+					<img src="{$vo.avatar}" alt="avatar" class="avatar pull-left" />
+					<div class="pull-left info">
+						<div class="">
+							<span class="nickname">{$vo.nickname}</span> 
+							<span class="time">{$vo.create_time|date="Y.m.d H:i",###}</span>
+						</div>
+						<div class="say">
+							{$vo.say}
+						</div>		
+					</div>
+					<div class="amount pull-right">
+						{:number_format($vo['amount'],0)}毫升
+					</div>
+				</div>
+			</li>
+			</volist>
+		</ul>
+		
+	</div>
+	
+
+	<div class="pour-btn">
+		<a href="{:U('Home/Index/index')}" class="">
+			<img src="__IMG__/shouye.png" class="img-responsive" alt="首页" />
+		</a>
+	</div>
+	
+	
+</block>
+
+<block name="area_footer">
+	<script type="text/javascript">
+		
+		$(function(){
+			window.itboye = {};
+			
+		})
+	</script>
+</block>

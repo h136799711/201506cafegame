@@ -1,0 +1,70 @@
+<extend name="mobile/template/base_index" />
+
+<block name="area_header">
+	<link rel="stylesheet" type="text/css" href="__CSS__/layout.css?v=__APP_VERSION__" />
+	<link rel="stylesheet" type="text/css" href="__CSS__/main.css?v=__APP_VERSION__" />
+	<script type="text/javascript" src="__JS__/alert.js?v=__APP_VERSION__"></script>
+</block>
+
+<block name="area_body">
+	
+	<div class="controls margin-sm">
+		<a class="btn btn-block btn-coffee js_qrcodescan" href="#" onclick="qrcodeScan();">打开二维码扫描</a>
+	</div>
+	
+	
+	<div style="z-index:100000000;" class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="loading-mobile">
+		<div class="am-modal-dialog">
+			<div class="am-modal-bd">
+				<img class="am-icon-spin" src="__IMG__/loading.png" alt="loading" />
+			</div>
+		</div>
+	</div>
+	<div class="am-dimmer " ></div>
+</block>
+
+<block name="area_footer">
+	<script type="text/javascript">
+		function qrcodeScan(){
+			if(!window.isWxReady){
+				setTimeout(qrcodeScan,600);
+			}
+			wx.scanQRCode({
+			    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+			    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+			    success: function (res) {
+			    		var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+			    		alert(result);
+			    		
+				}
+			});
+		}
+		function useCoupons($referrer){
+			$(".js_qrcodescan").click(function(){
+				$.ajax({
+					type:"post",
+					url:"{:U('Home/Index/pour')}?id="+$referrer,
+					async:true,
+					dataType:"json",
+					beforeSend:function(){
+						window.itboye.temp = {ele:loadingMsg("Loading...")};
+						console.log(window.itboye.temp);
+					}
+				}).fail(function(resp){
+					alert(resp.responseText);
+					window.itboye.temp.ele.hide();
+				}).done(function(data){
+					window.itboye.temp.ele.hide();
+					alertMsg(data.info);
+					console.log(data);
+				}).always(function(){
+//					window.itboye.temp.ele.hide();
+				});
+			})
+		}
+		$(function(){
+			window.itboye = {};
+			
+		})
+	</script>
+</block>

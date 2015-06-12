@@ -1,41 +1,231 @@
-<extend name="mobile/template/base_index"  />
+<extend name="mobile/template/base_index" />
 
 <block name="area_header">
 	<link rel="stylesheet" type="text/css" href="__CSS__/layout.css?v=__APP_VERSION__" />
 	<link rel="stylesheet" type="text/css" href="__CSS__/main.css?v=__APP_VERSION__" />
 	<style type="text/css">
-		map>area:hover{
+		map>area:hover {
 			border: 1px solid #0000FF;
 		}
-		map>area{
+		map>area {
 			border: 1px solid #EEA236;
 		}
 	</style>
+	<script type="text/javascript" src="__JS__/alert.js?v=__APP_VERSION__"></script>
 </block>
-
 
 <block name="area_body">
 	
+	<include file="mobile/partials/show_subscribe" />
+	
 	<div class="cafegame">
-		<img src="__IMG__/game.jpg" class="img-responsive" alt="game" usemap="#gamemap" />
-		<map name="gamemap" id="gamemap">
-			<area href="{:U('Home/Index/index')}" target="_blank" shape="circle" coords="480,340,50" alt="我也来一杯" />
-		</map>
-		{:dump($wxuser)}
+		
+		<img src="__IMG__/main.jpg" class="img-responsive" alt="game" />
+		
+		<include file="mobile/partials/float_btn" />
+		
+		<notempty name="coupons" >
+			<div class="coupons-wrp">
+				<div class="coupons ">
+					<div class="coupons-ticket">兑换券</div>
+					<div class="coupons-info">
+						<img src="{$userinfo['avatar']}" alt="avatar" class="img-responsive pull-left" />
+						<div class='pull-left'>
+							<div>{$userinfo['nickname']}</div>
+							<div>{$coupons}</div>
+						</div>
+					</div>
+					<div class="expire" >
+						有效期: 2015年7月5日9:30-21:30
+					</div>
+					
+					<div class="coupons-btn">
+						<switch name="coupons_status">
+						<case value="2"><span  class="btn btn-block btn-disabled">已使用</span></case>
+						<case value="3"><span  class="btn btn-block btn-disabled">已过期</span></case>
+						<default />
+						<a href="javascript:void(0)" class="js_used  btn btn-block btn-coffee" >使用时请出示</a>
+						</switch>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="hide password-form">
+				<form method="post" action="{:U('Home/Index/useCoupons',array('coupons'=>$coupons))}">
+					<fieldset>
+						<legend>
+							请输入消费密码:
+						</legend>
+						
+						<div class="margin-bottom-sm margin-top-sm">
+							<input type="password" name="pwd" class="pwd form-control"  />
+						</div>
+						
+						<div>
+							<a class="js_usecoupons btn btn-coffee btn-block" href="javascript:void(0)" >确定</a>
+						</div>
+					</fieldset>
+						
+					</div>
+				</form>
+			</div>
+		</notempty>
+		
 	</div>
 	
-	
+	<empty name="referrer">
+		<!--
+			没有referrer
+        -->
+		<div class="userinfo">
+			<div class="userinfo-avatar pull-left">
+				<img src="{$userinfo['avatar']}" alt="avatar" class="img-responsive avatar" />
+			</div>
+			<div class="userinfo-desc pull-left">
+				<div>{$userinfo['nickname']}
+				</div>
+				<div>
+					咖啡量:{$userinfo['current_coffee']}毫升,剩余{:($maxAmount-$userinfo['current_coffee']
+					< 0?0:$maxAmount-$userinfo[ 'current_coffee'])}毫升 </div>
+				</div>
+			</div>
+
+			<else/>
+
+			<!--
+			有referrer
+        -->
+			<div class="userinfo">
+				<div class="userinfo-avatar pull-left">
+					<img src="{$referrer['avatar']}" alt="avatar" class="img-responsive avatar" />
+				</div>
+				<!--<div class="" >
+			帮助我的人们
+		</div>-->
+				<div class="userinfo-desc pull-left">
+					<div>
+						{$referrer['nickname']}
+					</div>
+					<div>
+						咖啡量:{$referrer['current_coffee']}毫升,剩余{:($maxAmount-$referrer['current_coffee']
+						< 0?0:$maxAmount-$referrer[ 'current_coffee'])}毫升
+					</div>
+				</div>
+			</div>
+
+	</empty>
+	<!--<div class="referrer-info"> 
+		当前推广链接: {$shareUrl}
+	</div>-->
 	<input type="hidden" id="wxshareTitle" value="免费喝咖啡活动" />
 	<input type="hidden" id="wxshareLink" value="{$shareUrl}" />
 	<input type="hidden" id="wxshareImgUrl" value="{$shareImg}" />
 	<input type="hidden" id="wxshareDesc" value="咖啡陪你武汉光谷天地店！" />
-	<div>
+	<div class="hide">
 		<include file="mobile/partials/footermenu" />
 	</div>
+	
+	
+	<div style="z-index:100000000;" class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="loading-mobile">
+		<div class="am-modal-dialog">
+			<div class="am-modal-bd">
+				<img class="am-icon-spin" src="__IMG__/loading.png" alt="loading" />
+			</div>
+		</div>
+	</div>
+	<div class="am-dimmer " ></div>
 </block>
 
 <block name="area_footer">
 	<include file="mobile/partials/footer" />
-	
+	<script type="text/javascript">
+		function qrcodeScan(){
+			if(!window.isWxReady){
+				setTimeout(qrcodeScan,600);
+			}
+			wx.scanQRCode({
+			    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+			    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+			    success: function (res) {
+			    		var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+			    		alert(result);
+				}
+			});
+		}
+		
+		$(function(){
+//			qrcodeScan();
+			window.itboye = {};
+			$(".js_used").click(function(){
+				$(".password-form").removeClass("hide");
+			});
+			$(".js_usecoupons").click(function(){
+				var pwd = $(".password-form input.pwd").val();
+				
+				$.ajax({
+					type:"post",
+					url:"{:U('Home/Index/useCoupons',array('coupons'=>$coupons))}",
+					async:true,
+					dataType:"json",
+					data:{pwd:pwd},
+					beforeSend:function(){
+						window.itboye.temp = {ele:loadingMsg("Loading...")};
+						console.log(window.itboye.temp);
+					}
+				}).fail(function(resp){
+//					alert(resp);
+					window.itboye.temp.ele.hide();
+				}).done(function(data){
+					window.itboye.temp.ele.hide();
+					alertMsg(data.info);
+					if(data.status){
+						if(data.url){
+							
+						}else{
+							setTimeout(function() {		window.location.reload();}, 1500);
+						}
+					}
+					$(".password-form").addClass("hide");
+					console.log(data);
+				}).always(function(){
+//					window.itboye.temp.ele.hide();
+				});
+			});
+			$(".js_pour").click(function(){
+				$.ajax({
+					type:"post",
+					url:"{:U('Home/Index/pour',array('referrer'=>I('get.referrer',0)))}",
+					dataType:"json",
+					beforeSend:function(){
+						window.itboye.temp = {ele:loadingMsg("Loading...")};
+						console.log(window.itboye.temp);
+					}
+				}).fail(function(resp){
+					alert(resp.status+resp.statusText);
+					window.itboye.temp.ele.hide();
+				}).done(function(data){
+					window.itboye.temp.ele.hide();
+					alertMsg(data.info);
+					if(data.status){
+						if(data.url){
+							
+						}else{
+							setTimeout(function() {
+									location.reload();
+							}, 1500);
+						}
+					}
+//					if(data.status){
+//						alertMsg(data.info);
+//					}else{
+//						alertMsg(data.info);
+//					}
+					console.log(data);
+				}).always(function(){
+//					window.itboye.temp.ele.hide();
+				});
+			})
+		})
+	</script>
 </block>
-	

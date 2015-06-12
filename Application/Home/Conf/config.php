@@ -22,5 +22,5 @@ return array(
 	)
 	,
 	'CAFEGAME_TOKEN'=>'modwvbtg1433857632',//咖啡token
-	
+	'COUPONS_USE_PWD'=>'123456',//消费密码
 );

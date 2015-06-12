@@ -1,0 +1,49 @@
+<eq name="userinfo['subscribed']" value="0">
+	<div class="not-subscribe padding-sm">
+		<img src="{$wxaccount['qrcode']}" class="qrcode margin-left-sm margin-right-sm pull-left" />
+		<div class="pull-left info">
+			请先关注[{$wxaccount['wxname']}]
+		</div>
+		<a href="http://mp.weixin.qq.com/s?__biz=MzA4Mjg1NjEwNg==&mid=206272968&idx=1&sn=add6349b524b37e505e010ff91c1103e#rd" class="btn btn-coffee pull-right">立即关注</a>
+	</div>
+	
+<else/>
+
+	<notempty name="referrer">
+		<eq name="referrer['id']" value="$userinfo['id']">
+			
+		<div class="subscribed padding-sm">
+			<div class="pull-left info">
+			您不能自己加咖啡
+			</div>
+			
+		</div>
+		<else/>
+		
+		<div class="subscribed padding-sm">
+			<notempty name="error">
+				<!-- 出现错误 -->
+			<div class="pull-left info">
+			{$error}
+			</div>
+				
+			<else/>
+			<div class="pull-left info">
+			您正在帮
+			</div>
+			<div class="pull-left info" style="color:#FFFF00;">
+				<img src="{$referrer['avatar']}" class="qrcode margin-left-sm margin-right-sm pull-left" />{$referrer['nickname']}
+			</div>
+			<div class="pull-left info">
+			加咖啡
+			</div>
+			
+			
+			</notempty>
+		</div>
+			
+		</eq>
+	</notempty>
+	
+		
+</eq>

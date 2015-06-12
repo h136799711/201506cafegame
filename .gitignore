@@ -25,3 +25,5 @@ DerivedData
 #
 #Pods/
 /Runtime
+.DS_Store
+*.DS_Store

@@ -28,7 +28,6 @@ class WxuserModel extends Model{
 	
 	//自动完成
 	protected $_auto = array(
-		array('subscribed', 1, self::MODEL_INSERT), 
 		array('money', 0, self::MODEL_INSERT), 
 		array('updatetime', 'time', self::MODEL_BOTH,'function'), 
 		array('createtime', NOW_TIME, self::MODEL_INSERT), 
