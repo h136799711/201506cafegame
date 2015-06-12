@@ -186,7 +186,7 @@ class IndexController extends HomeController {
 		if(!$result['status']){
 			$this->error($result['info']);
 		}
-		
+		$this->assign("meta_title","看看都有谁帮了我!");
 		$this->assign("list",$result['info']);
 		$this->theme($this->theme)->display();
 	}
@@ -292,7 +292,7 @@ class IndexController extends HomeController {
 	/**
 	 * 随机产生一句话
 	 */
-	private function randomSay(){
+	private function randomSay($ml){
 		$say_arr = array(
 			'什么也不说了!',
 			'好基友，不顶你顶谁!',

@@ -17,7 +17,8 @@ class CafegameApi extends \Common\Api\Api{
 	}
 	
 	public function queryInfo($id){
-		$result = $this->model->alias("a ")->join("LEFT JOIN __WXUSER__ as w on w.id = a.uid")->where(array("a.uid"=>$id))->select();
+		$result = $this->model->alias("a ")->join("LEFT JOIN __WXUSER__ as w on w.id = a.help_uid")->where(array("a.uid"=>$id))->select();
+//		dump($this->model->getLastSql());
 		if($result === false){
 			return $this->apiReturnErr($this->model->getDbError());
 		}

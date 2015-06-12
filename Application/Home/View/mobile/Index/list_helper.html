@@ -20,6 +20,11 @@
 	
 	<div class="list-helper clearfix">
 		<ul class="clearfix">
+			<empty name="list">
+				<li class="clearfix">
+					<span style="font-size: 0.3rem;">还没有人帮助您，赶紧分享给朋友！<br/>右上角 ＝》发送给朋友 或 分享到朋友圈</span>
+				</li>
+			</empty>
 			<volist name="list" id="vo">
 			<li class="clearfix">
 				<div class="user-item clearfix">
@@ -50,6 +55,10 @@
 		</a>
 	</div>
 	
+	<input type="hidden" id="wxshareTitle" value="免费喝咖啡活动" />
+	<input type="hidden" id="wxshareLink" value="{$shareUrl}" />
+	<input type="hidden" id="wxshareImgUrl" value="{$shareImg}" />
+	<input type="hidden" id="wxshareDesc" value="咖啡陪你武汉光谷天地店！" />
 	
 </block>
 
