@@ -322,11 +322,12 @@ class IndexController extends HomeController {
 	protected function getWxuser($url) {
 		$referrer = I("get.referrer", 0);
 		$this -> userinfo = null;
-		if (session("?userinfo")) {
+		if (session("?userinfo") && IS_AJAX) {
 			$this -> userinfo = session("userinfo");
 			$this -> openid = $this -> userinfo['openid'];
 		}
-		addWeixinLog($this -> userinfo, "userinfo getWxuser");
+		
+//		addWeixinLog($this -> userinfo, "userinfo getWxuser");
 
 		if (!is_array($this -> userinfo)) {
 
@@ -334,9 +335,9 @@ class IndexController extends HomeController {
 			$state = I('get.state', '');
 			if (empty($code) && empty($state)) {
 
-				$redirect = $this -> wxapi -> getOAuth2BaseURL($url, 'HomeIndexOpenid', 'snsapi_userinfo');
+//				$redirect = $this -> wxapi -> getOAuth2BaseURL($url, 'HomeIndexOpenid', 'snsapi_userinfo');
 				//需要服务号
-				//				$redirect = $this -> wxapi -> getOAuth2BaseURL($url, 'HomeIndexOpenid');
+								$redirect = $this -> wxapi -> getOAuth2BaseURL($url, 'HomeIndexOpenid');
 
 				redirect($redirect);
 			}
