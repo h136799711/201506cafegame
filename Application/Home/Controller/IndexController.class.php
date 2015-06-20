@@ -23,8 +23,8 @@ class IndexController extends HomeController {
 	
 	
 	private $conditionAmount = 350;// 达到条件毫升数
-	private $genMinML = 30;// 最小倒入毫升数
-	private $genMaxML = 50;// 最大倒入毫升数
+	private $genMinML = 50;// 最小倒入毫升数
+	private $genMaxML = 70;// 最大倒入毫升数
 	private $maxCntEachDay = 1;// 每人一天3次
 	
 	protected function _initialize() {

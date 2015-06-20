@@ -9,6 +9,7 @@
    box-sizing: border-box;
 }
 body{
+	font-size: 1.4rem;
 	font-family: tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
 }
 ul,li{
@@ -331,6 +332,7 @@ body.app{
 	color:#EEEEEE;
 }
 .app .footer{
+	font-size: 0.16rem;
 	padding: 0.1rem;
 }
 .app .footer p{
@@ -384,24 +386,34 @@ body.app{
 	position: fixed;
     bottom: 0px;
     left:0px;
+    height: 0.8rem;
     padding: 0.05rem;
     background: #423838;
     color: #fff;
     width:100%;
+    font-size: 0.16rem;
 }
 .userinfo .avatar{  
 	width: 0.48rem;
 	height: 0.48rem;
+	width: .6rem;
+    height: .6rem;
+	line-height: 0.8rem;
+    margin: 0.05rem;
+	vertical-align: middle;
 }
 .userinfo .userinfo-avatar{
 	width: .48rem;
     height: 0.48rem;
+	width: .6rem;
+    height: .6rem;
     margin-right: 0.12rem;
 }
 .userinfo .userinfo-desc{
 	width: 3rem;
     height: 0.24rem;
     line-height: 0.24rem;
+	line-height: 0.4rem;
 }
 
 /*

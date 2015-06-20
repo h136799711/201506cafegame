@@ -10,9 +10,9 @@
 
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
-define('BOYE_SYS_NAME',true);
+define('BOYE_SYS_NAME' , true);
 
-//define("BIND_MODULE", "Home");
+define("PROJECT_NAME" , "201506cafegame");
 
 // 是否调试模式
 define('APP_DEBUG',true);
@@ -24,14 +24,17 @@ require_once(APP_PATH.'/Common/Conf/appmeta.php');
 
 define('HTML_PATH',      './Html/'); // 应用静态目录
 
-// 框架目录
-define("THINK_PATH",realpath("./Core/").'/');
+/**
+ * 
+ */
 
 // 运行时文件
-define("RUNTIME_PATH","./Runtime/");
+define("RUNTIME_PATH","../../Runtime/".PROJECT_NAME."/");
 
-// 第三方类库目录
-//define("VENDOR_PATH","./Vendor/");
-
+// 框架目录
+define("THINK_PATH",realpath("../../thinkphp/thinkphp_clone/").'/');
+//var_dump(RUNTIME_PATH);
+//var_dump(THINK_PATH);
+//exit();
 // 加载
-require "./Core/ThinkPHP.php";
+require "../../thinkphp/thinkphp_clone/ThinkPHP.php";

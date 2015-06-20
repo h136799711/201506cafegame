@@ -3,14 +3,6 @@
 <block name="area_header">
 	<link rel="stylesheet" type="text/css" href="__CSS__/layout.css?v=__APP_VERSION__" />
 	<link rel="stylesheet" type="text/css" href="__CSS__/main.css?v=__APP_VERSION__" />
-	<style type="text/css">
-		map>area:hover {
-			border: 1px solid #0000FF;
-		}
-		map>area {
-			border: 1px solid #EEA236;
-		}
-	</style>
 	<script type="text/javascript" src="__JS__/alert.js?v=__APP_VERSION__"></script>
 </block>
 
@@ -20,7 +12,7 @@
 	
 	<div class="cafegame">
 		
-		<img src="__IMG__/main.jpg" class="img-responsive" alt="game" />
+		<img src="__IMG__/main0619.jpg?v=0.1" class="img-responsive" alt="game" />
 		
 		<include file="mobile/partials/float_btn" />
 		
@@ -78,7 +70,6 @@
 	
 <else/>
 	<empty name="referrer">
-		
 		<!--
 			没有referrer
         -->
@@ -90,7 +81,7 @@
 				<div>{$userinfo['nickname']}
 				</div>
 				<div>
-					咖啡量:{$userinfo['current_coffee']}毫升,剩余{:($maxAmount-$userinfo['current_coffee']
+					咖啡量:{$userinfo['current_coffee']}毫升,还要{:($maxAmount-$userinfo['current_coffee']
 					< 0?0:$maxAmount-$userinfo[ 'current_coffee'])}毫升 </div>
 				</div>
 			</div>
