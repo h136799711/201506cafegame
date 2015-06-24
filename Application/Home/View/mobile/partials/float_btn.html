@@ -1,9 +1,33 @@
 
-<div class="pour-btn">
+<div class="pour-btn js_float_btn">
 	<a href="javascript:void(0)" class="js_pour">
 		<img src="__IMG__/pour_btn.png?v=1.1" class="img-responsive" alt="倒咖啡" />
 	</a>
 	<a href="{:U('Home/Index/list_helper')}" class="">
 		<img src="__IMG__/helpme.png?v=1.1" class="img-responsive" alt="查看帮助我的人" />
 	</a>
+	<a href="javascript:void(0)" class="js_share_helper">
+		<img src="__IMG__/btn_share.png?v=1.0" class="img-responsive" alt="如何分享" />
+	</a>
 </div>
+<div class="share-helper hide" style="width:100%;height:100%;position:absolute;left:0px;top:0px;z-index:999999;background: rgba(0,0,0,0.5);">
+	<div style="width:100%;height:100%;z-index:inherit;background-size: contain;background: url(__IMG__/share_help.png?v=1.0) no-repeat left top;">
+		&nbsp;
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$(".js_float_btn .js_share_helper").click(function(){
+//			alert("click");
+			$(".share-helper").css("top",$(window).scrollTop());
+			$(".share-helper").removeClass("hide");
+		});
+		
+		
+		$(".share-helper").click(function(){
+//			alert("click");
+			$(".share-helper").addClass("hide");
+		});
+	})
+</script>
